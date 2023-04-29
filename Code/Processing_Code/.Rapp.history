@@ -1,184 +1,3 @@
-p
-p + geom_point(size = 1) +  #
-  geom_text(nudge_x = 0.05) + #
-  scale_x_log10() +#
-  scale_y_log10() +#
-  xlab("Petal Length (log scale)") + #
-  ylab("Petal Width (log scale)") +#
-  ggtitle("Fisherʻs Iris dataset")
-p <- iris |> ggplot() + #
-  geom_point(aes(Petal.Length, Petal.Width)) +#
-  geom_text(aes(Petal.Length, Petal.Width, label = id))
-p
-p + geom_point(size = 1) +  #
-  geom_text(nudge_x = 0.05) + #
-  scale_x_log10() +#
-  scale_y_log10() +#
-  xlab("Petal Length (log scale)") + #
-  ylab("Petal Width (log scale)") +#
-  ggtitle("Fisherʻs Iris dataset")
-color
-colors
-colors()
-install.packages("remotes")#
-remotes::install_github("kassambara/easyGgplot2")
-easyGgplot2::showCols()
-iris$id <-1:length(iris$Species)#
-p <- iris |> ggplot(aes(Petal.Length, Petal.Width, label=id)
-iris$id <-1:length(iris$Species)#
-p <- iris |> ggplot(aes(Petal.Length, Petal.Width, label=id))
-p
-cols <- c("darkorange", "navyblue", "deeppink")
-p + geom_point(aes(col=Species, size=3))+ scale_color_manual(values=cols)
-names(cols) <- ("setosa", "versicolor", "virginica")
-cols <- c("darkorange", "navyblue", "deeppink")#
-names(cols) <- ("setosa", "versicolor", "virginica")
-cols <- c("darkorange", "navyblue", "deeppink")#
-names(cols) <- c("setosa", "versicolor", "virginica")
-cols <- c("darkorange", "navyblue", "deeppink")#
-names(cols) <- c("versicolor", "versicolor", "virginica")
-names(cols) <- c("versicolor", "virginica", "setosa")
-p + geom_point(aes(col=Species, size=3))+ scale_color_manual(values=cols)
-q <- p + geom_point(aes(col=Species, size=3))+ scale_color_manual(values=cols)
-q + geom_point(aes(alpha=0.5))
-q + geom_point(aes(col=Species, size=3, alpha=0.5))
-p + geom_point(aes(col=Species, size=3, alpha=0.5))+ scale_color_manual(values=cols)
-p + geom_jitter(aes(col=Species, size=3))+ scale_color_manual(values=cols)
-p + geom_jitter(aes(col=Species, size=3, alpha=0.5))+ scale_color_manual(values=cols)
-install.packages("cowplot")
-require(cowplot)
-plot1 <- p + geom_point() +#
-  scale_color_manual(values=cols) +#
-  geom_jitter(aes(col=Species, size = 3, alpha = 0.5))
-plot2 <- p + geom_point(aes(col=Species, size = 3, alpha = 0.5)) +#
-  scale_color_manual(values=cols) +#
-  geom_jitter()
-plot_grid(plot1, plot2, labels="AUTO")
-cowplot::plot_grid(plot1, plot2, labels="AUTO")
-plot2 <- p + geom_point(aes(col=Species, size = 3, alpha = 0.5)) +#
-  scale_color_manual(values=cols) +#
-  geom_boxplot()
-plot2
-plot2 <- p + geom_point(aes(col=Species, size = 3, alpha = 0.5)) +#
-  scale_color_manual(values=cols, aesthetics="fill") +#
-  geom_boxplot()
-cowplot::plot_grid(plot1, plot2, labels="AUTO")
-boxplot1 <- iris |> ggplot(aes(x = Species, y = Petal.Length))
-boxplot1 <- iris |> ggplot(aes(x = Species, y = Petal.Length)) + geom_point()
-boxplot1
-boxplot1 <- iris |> ggplot(aes(x = Species, y = Petal.Length)) + geom_boxplot()
-boxplot1
-boxplot1 <- iris |> ggplot(aes(x = Species, y = Petal.Length)) + geom_boxplot() + scale_color_manual(values=cols)
-boxplot1
-cols <- c("darkorange", "navyblue", "deeppink")
-boxplot1 <- iris |> ggplot(aes(x = Species, y = Petal.Length)) + geom_boxplot() + scale_color_manual(values=cols)
-boxplot1+ geom_boxplot() + scale_color_manual(values=cols)
-boxplot1+ geom_boxplot() + scale_color_manual(values=cols, aesthetics = "colour")
-boxplot1+ geom_boxplot() + scale_color_manual(values=cols, aesthetics = "fill")
-boxplot1+ geom_boxplot() + scale_colour_manual(values=cols, aesthetics = "fill")
-boxplot1 <- iris |> ggplot(aes(x = Species, y = Petal.Length, fill=Species))
-boxplot1+ geom_boxplot() + scale_colour_manual(values=cols, aesthetics = "fill")
-?geom_density
-?scale_color_manual
-densplot <- ggplot(iris, aes(x = Sepal.Length, fill = Species, col=Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="fill") +#
-  theme(legend.position = c(0.8, 0.8))
-plot_grid(plot1, plot2, labels="AUTO")
-plot_grid(boxplot, densplot, labels="AUTO")
-boxplot1 <- boxplot + geom_boxplot() + scale_colour_manual(values=cols, aesthetics = "fill")
-boxplot1 <- iris |> ggplot(aes(x = Species, y = Petal.Length, fill=Species))
-boxplot1 <- boxplot + geom_boxplot() + scale_colour_manual(values=cols, aesthetics = "fill")
-plot_grid(boxplot1, densplot, labels="AUTO")
-boxplot1
-plot_grid(boxplot2, densplot, labels="AUTO")
-boxplot1 <- iris |> ggplot(aes(x = Species, y = Petal.Length, fill=Species))
-boxplot2 <- boxplot1 + geom_boxplot() + scale_colour_manual(values=cols, aesthetics = "fill")
-plot_grid(boxplot2, densplot, labels="AUTO")
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species, col=Species)) +
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species, col=Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="fill") +#
-  theme(legend.position = c(0.8, 0.8))
-plot_grid(boxplot2, densplot, labels="AUTO")
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species, col=Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="color") + Scale_color_manual(values=cols) +#
-  theme(legend.position = c(0.8, 0.8))
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species, col=Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="color") + scale_color_manual(values=cols) +#
-  theme(legend.position = c(0.8, 0.8))
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species, col=Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="color") + scale_fill_manual(values=cols) +#
-  theme(legend.position = c(0.8, 0.8))
-plot_grid(boxplot2, densplot, labels="AUTO")
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species, col=Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="color", "fill") + +#
-  theme(legend.position = c(0.8, 0.8))
-plot_grid(boxplot2, densplot, labels="AUTO")
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="color", "fill") + +#
-  theme(legend.position = c(0.8, 0.8))
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="color", "fill")  +#
-  theme(legend.position = c(0.8, 0.8))
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="color", "fill")  +#
-  theme(legend.position = c(0.8, 0.8))#
-#
-#side by side#
-plot_grid(boxplot2, densplot, labels="AUTO")
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics="color", "fill")  +#
-  theme(legend.position = c(0.8, 0.8))
-plot_grid(boxplot2, densplot, labels="AUTO")
-densplot <- ggplot(iris, aes(x = Sepal.Length, col=Species, fill = Species)) + #
-  geom_density(alpha=0.5) +#
-  scale_color_manual(values=cols, aesthetics=c("color", "fill"))  +#
-  theme(legend.position = c(0.8, 0.8))
-plot_grid(boxplot2, densplot, labels="AUTO")
-p <- iris |> ggplot(x=Petal.Length, y=Petal.Width)
-p + geom_point(aes(col=Species), size = 3) +#
-    geom_smooth()
-p <- iris |> ggplot(x=Petal.Length, y=Petal.Width)
-p + geom_point(aes(col=Species), size = 3) +#
-    geom_smooth()
-p + geom_point(aes(col=Species), size = 3) +#
-    geom_smooth(method="lm")
-p <- iris |> ggplot(aes(x=Petal.Length, y=Petal.Width))
-p + geom_point(aes(col=Species), size = 3) +#
-    geom_smooth()
-p + geom_point(aes(col=Species), size = 3) +#
-    geom_smooth(method="lm")
-p + geom_point(aes(col=Species), size = 3) +
-geom_smooth(method="lm", se=FALSE)
-lm.fit <- lm(iris$Petal.Width ~ iris$Petal.Length)
-lm.fit <- lm(iris$Petal.Width ~ iris$Petal.Length)#
-p + geom_point(aes(col=Species), size = 3) +#
-    geom_abline(intercept = coef(lm.fit)[1], slope= coef(lm.fit)[2])
-p + geom_point(aes(col=Species), size = 3) +#
-    geom_smooth( aes(group=Species), method="lm")
-r <- iris |> ggplot(aes(x = Petal.Length, y= Petal.Width, col=Species)) #
-r + geom_point(aes(col=Species), size = 3) +#
-    geom_smooth( method="lm")
-p + geom_point(aes(col=Species), size = 3) +#
-   geom_smooth( method="lm") + #
-   facet_wrap(~Species)
-p + geom_point(aes(col=Species), size = 3) +#
-   geom_smooth( method="lm") + #
-   facet_grid(. ~ Species)
-p + #
-  geom_point(aes(color = Species)) + #
-  theme_bw(base_family = "Times")
-ggsave(filename, plot = p)
-ggsave("filename.pdf", plot = p)
 pwd
 par(mfrow=c(1,2))#
 with(iris, boxplot(Sepal.Length))#
@@ -618,3 +437,237 @@ unique(rawdata$species)
 na.omit(rawdata)
 rawdata$pixels[rawdata$meas==10mm]
 rawdata$pixels[rawdata$meas=="10mm"]
+data_location <- "../../Data/Raw_data/Raw_Oreophryne_Character_Measurements.csv"#
+data_path <- "../../Data/Raw_data/"#
+#
+rawdata <- read.csv(data_location, check.names=FALSE)
+data_location <- "../../Data/Raw_data/Raw_Oreophryne_Character_Measurements.csv"#
+data_path <- "../../Data/Raw_data/"#
+#
+rawdata <- read.csv(data_location, check.names=FALSE)
+data_location <- "../../Data/Raw_data/Raw_Oreophryne_Character_Measurements.csv"#
+data_path <- "../../Data/Raw_data/"#
+#
+rawdata <- read.csv(data_location, check.names=FALSE)
+data_location <- "../../../Data/Raw_data/Raw_Oreophryne_Character_Measurements.csv"
+data_location <- "../../../Data/Raw_data/Raw_Oreophryne_Character_Measurements.csv"#
+data_path <- "../../../Data/Raw_data/"
+rawdata <- read.csv(data_location, check.names=FALSE)
+data_location <- "../../../Data/Raw_data/Raw_Oreophryne_Character_Measurements.csv"#
+data_path <- "../../../Data/Raw_data/"#
+#
+rawdata <- read.csv(data_location, check.names=FALSE)
+data_location <- "../../../Data/Raw_data/Raw_Oreophryne_Character_Measurements.csv"#
+data_path <- "../../../Data/Raw_data/"#
+#
+rawdata <- read.csv(data_location, check.names=FALSE)
+data_location <- "../../Data/Raw_data/Raw_Oreophryne_Character_Measurements.csv"#
+data_path <- "../../../Data/Raw_data/"
+rawdata <- read.csv(data_location, check.names=FALSE)
+head(rawdata)
+skimr::skim(rawdata)
+data_location <- "../../Data/Raw_data/Oreophryne_Character_Measurements.csv"#
+data_path <- "../../../Data/Raw_data/"#
+#
+rawdata <- read.csv(data_location, check.names=FALSE)
+head(rawdate)
+head(rawdata)
+which( is.na(rawdata$BPBM) )
+nas <- which( is.na(rawdata$BPBM) ) # find which rows have NA #
+dat <- rawdata[-nas]
+head(dat)
+data_location <- "../../Data/Raw_data/Oreophryne_Character_Measurements.csv"#
+data_path <- "../../../Data/Raw_data/"#
+#
+rawdata <- read.csv(data_location, check.names=FALSE)
+rawdata$BPBM
+which( is.na(rawdata$BPBM) )
+nas <- which( is.na(rawdata$BPBM) ) # find which rows have NA
+dat <- rawdata[-nas] # exclude these rows
+head(dat)
+dat
+data_location <- "../../Data/Raw_data/Oreophryne_Character_Measurements.csv"#
+data_path <- "../../../Data/Raw_data/"#
+#
+rawdata <- read.csv(data_location, check.names=FALSE)
+nas <- which( is.na(rawdata$BPBM) ) # find which rows have NA #
+dat <- rawdata[-nas,] # exclude these rows#
+head(dat)
+head(rawdata)
+head(dat)
+dat[,-meas]
+extracols <- c(dat$meas, dat$number, dat$label, dat$mean, dat$min,dat$max, dat$angle, dat$length, dat$pixels)
+extracols
+dat2 <- dat[,-extracols]
+extracols <- cbind(dat$meas, dat$number, dat$label, dat$mean, dat$min,dat$max, dat$angle, dat$length, dat$pixels)
+dat2 <- dat[,-extracols]
+extracols <- cbind(dat$genus, dat$species, dat$BPBM, dat$svl (mm), dat$finger width (mm),dat$toe width (mm), dat$f/t, dat$ant width (mm), dat$pos width (mm), dat$a/p)
+extracols <- cbind(dat$genus, dat$species, dat$BPBM, dat$"svl (mm)", dat$"finger width (mm)",dat$"toe width (mm)", dat$f/t, dat$"ant width (mm)", dat$"pos width (mm)", dat$a/p)
+dat2 <- dat[-c(5:13)]
+dat2
+head(dat2)
+require(ggplot)
+install.packages("ggplot")
+require(ggplot2)
+ggplot(dat2)
+plot(dat2$SVL, dat2$f/t, scale_color_manual(genus))
+dat2$f/t
+dat2$"f/t"
+plot(dat2$SVL, dat2$"f/t", scale_color_manual(genus))
+plot(dat2$"svl (mm)", dat2$"f/t", scale_color_manual(genus))
+plot(dat2$"svl (mm)", dat2$"f/t", scale_color_manual(dat2$genus))
+class(dat2$"svl (mm)")
+svl.vs.ft <- ggplot(dat2, aes(x = "svl (mm)", y = "f/t"))#
+#
+svl.vs.ft + #
+  geom_point(aes(color = genus, shape = species), size = 2, alpha = 0.6)
+svl.vs.ft <- ggplot(dat2, aes(x = "svl (mm)", y = "f/t"))#
+#
+svl.vs.ft + #
+  geom_point(aes(color = genus, shape = species), size = 2)
+ggplot(dat2, aes(x = "svl (mm)", y = "f/t"))
+svl.vs.ft <- ggplot(dat2, aes(x = svl (mm), y = f/t))
+svl.vs.ft + #
+  geom_point(aes(color = genus, shape = species), size = 2)
+ggplot(dat2, aes(x = "svl (mm)", y = "f/t"))
+library(tidyverse)
+ggplot(dat2, aes(x = "svl (mm)", y = "f/t"))
+p <- ggplot(dat2, mapping = aes(x = Sepal.Length, y = Sepal.Width))
+p
+ggplot(dat2, mapping = aes(x = "svl (mm)", y = "f/t"))
+p + geom_point()
+p <- ggplot(dat2, mapping = aes(x = "svl (mm)", y = "f/t"))   #
+p + geom_point()
+install.packages("TDBook")
+install.packages("TDbook")
+my_ggtree <- my_ggtree %<+% new_data
+require(ape)#
+require(ggtree)#
+require(treeio)
+tree <- rtree(20)#
+class(tree)
+plot(tree)  # ape plotting function
+ggtree(tree)  # ggtree plotting function
+treeio::write.nexus(tree, file="tree.nex")#
+treeio::write.tree(tree, file="tree.tree")#
+list.files()
+tree_nex <- treeio::read.nexus(file="tree.nex")#
+tree_new <- treeio::read.newick(file="tree.tree")#
+class(tree_nex)
+as.phylo (tree)  # to phylo
+as.treedata(tree) # to treedata
+treedata <- as.treedata(tree)  #
+as_tibble(treedata)  # to tibble
+n <- length(taxa)#
+size <- rnorm(n, mean=20, sd=5)#
+habitat <- sample(c("desert", "grassland", "forest", "intertidal"), size=n, replace=T)#
+dat <- data.frame( "label"= taxa, size, habitat)#
+dat
+taxa <- get_taxa_name(p)
+ggtree(tree) + geom_tiplab()
+p <- ggtree(tree) + geom_tiplab()#
+get_taxa_name(p)
+taxa <- get_taxa_name(p)
+n <- length(taxa)#
+size <- rnorm(n, mean=20, sd=5)#
+habitat <- sample(c("desert", "grassland", "forest", "intertidal"), size=n, replace=T)#
+dat <- data.frame( "label"= taxa, size, habitat)#
+dat
+as.treedata(p) %>% as_tibble %>% as.data.frame
+ttree <- full_join(tree, dat, by = "label") #
+ttree
+ttree %>% as_tibble %>% as.data.frame
+todrop <- paste("t", 1:10*2, sep="")#
+todrop
+smalltree <- drop.tip(ttree, todrop)#
+smalltree
+ggtree(smalltree) + geom_tiplab()
+ggtree(smalltree) + #
+    geom_tiplab() +#
+    geom_text(aes(label=node), hjust=-.3)    # node numbers
+ggtree(smalltree) + #
+    geom_tiplab() +#
+    geom_text2(aes(label=node, subset=!isTip), hjust=-.3)    # node numbers
+ggtree(smalltree) + #
+    geom_tiplab(aes(label=habitat)) +#
+    geom_text2(aes(label=node, subset=!isTip), hjust=-.3)    # node numbers
+ggtree(smalltree) + #
+    geom_tiplab(aes(label=habitat)) +#
+    geom_text2(aes(label=node, subset=!isTip), hjust=-.3) +   # node numbers#
+    theme_tree2()
+ggtree(smalltree) + #
+    geom_tiplab(aes(label=habitat)) +#
+    geom_text2(aes(label=node, subset=!isTip), hjust=-.3) +   # node numbers#
+    theme_tree2() +#
+    xlim(0,5)
+require(cowplot)#
+#
+plot_grid(#
+  ggtree(ttree),#
+  ggtree(ttree, branch.length='none'),#
+  ggtree(ttree, layout="dendrogram"),#
+  ggtree(ttree, layout="roundrect"),#
+  ggtree(ttree, layout="ellipse"),#
+  ggtree(ttree, layout="ellipse", branch.length="none"),#
+  ggtree(ttree, layout="circular"),#
+  ggtree(ttree, branch.length='none', layout='circular'),#
+  ggtree(ttree, layout="fan", open.angle=120),#
+  ggtree(ttree, layout="inward_circular")#
+)
+require(ggplot2)#
+require(dplyr)#
+#
+smdat <- smalltree %>% #
+           as_tibble %>% #
+           filter(!is.na(label)) %>%#
+           relocate(label, .before=1)
+ggtree(smalltree) + #
+    geom_tiplab() +#
+    theme_tree2()  + #
+    geom_facet(panel = "Size", #
+               data=smdat, #
+               geom = geom_col, #
+               mapping=aes(x = smdat$size), #
+               orientation = 'y', #
+               width = .6, #
+               fill="blue")
+my_ggtree <- my_ggtree %<+% new_data
+require(ggtree)#
+require(ggplot2)#
+require(dplyr)#
+require(TDbook)#
+#
+# load `tree_boots`, `df_tip_data`, and `df_inode_data` from 'TDbook'
+p <- ggtree(tree_boots) %<+% df_tip_data + xlim(-.1, 4)#
+p2 <- p + geom_tiplab(offset = .6, hjust = .5) +#
+    geom_tippoint(aes(shape = trophic_habit, color = trophic_habit, #
+                size = mass_in_kg)) + #
+    theme(legend.position = "right") + #
+    scale_size_continuous(range = c(3, 10))#
+#
+p2 %<+% df_inode_data + #
+    geom_label(aes(label = vernacularName.y, fill = posterior)) + #
+    scale_fill_gradientn(colors = RColorBrewer::brewer.pal(3, "YlGnBu"))
+## load `tree_nwk`, `df_info`, `df_alleles`, and `df_bar_data` from 'TDbook'#
+tree <- tree_nwk#
+snps <- df_alleles#
+snps_strainCols <- snps[1,] #
+snps<-snps[-1,] # drop strain names#
+colnames(snps) <- snps_strainCols#
+#
+gapChar <- "?"#
+snp <- t(snps)  # not rectangular!#
+lsnp <- apply(snp, 1, function(x) {#
+        x != snp[1,] & x != gapChar & snp[1,] != gapChar#
+    })  # different from row 1, not missing#
+lsnp <- as.data.frame(lsnp) #
+lsnp$pos <- as.numeric(rownames(lsnp))  # position from rownames#
+lsnp <- tidyr::gather(lsnp, name, value, -pos)  #
+snp_data <- lsnp[lsnp$value, c("name", "pos")] # only TRUEs
+## visualize the tree #
+p <- ggtree(tree) #
+#
+## attach the sampling information data set #
+## and add symbols colored by location#
+p <- p %<+% df_info + geom_tippoint(aes(color=location))#
+p
