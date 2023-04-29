@@ -84,6 +84,7 @@ my_table
 require(corrr)
 require(ggcorrplot)
 require(FactoMineR)
+require(factoextra)
 
 str(dat2) # show summary of data
 colSums(is.na(dat2)) # check for nulls
@@ -91,10 +92,33 @@ dat3 <- dat2[,4:10] # take only numerical columns
 
 head(dat3)
 
-dat4 <- scale(dat3) #normalize data
+dat4 <- scale(dat3) # normalize data
 head(dat4)
 
-corr_matrix <- cor(dat4)
-ggcorrplot(corr_matrix)
+corr_matrix <- cor(dat4) 
+ggcorrplot(corr_matrix) # view a correlation matrix for the variables
+
+data.pca <- princomp(corr_matrix) # calculate PCA analysis
+summary(data.pca) # print summary of results
+
+data.pca$loadings[, 1:2] 
+
+fviz_eig(data.pca, addlabels = TRUE)
+
+## ---- phylogenyexperiment ----
+#I want to use one of the ways to plot either a heat map or dotTree as in this tutorial <http://www.phytools.org/Cordoba2017/ex/15/Plotting-methods.html> but I am having trouble getting the matrix (dat3) to match the tree
+require(phytools)
+
+tree_location <- "../../Data/Raw_data/asterophryinae_partitions.nex.timetree.nwk"
+tree <- read.newick(tree_location)
+
+species<-c("Oreophryneinornata",   "Oreophryneloriae" ,    "Oreophrynenotata"   , 
+ "Oreophryneparkeri" ,   "Oreophrynebiroi" ,     "Oreophryneanamiatoi" 
+,"Auparoparopenelopeia", "Auparoparoinsulana" ,  "Auparoparophoebe"    
+, "Auparoparopicticrus" , "Auparoparomatawan"  ,  "Auparoparoezra"  ) #select included taxa
+
+pruned.tree<-drop.tip(tree,tree$tip.label[-match(species, tree$tip.label)])
+write.tree(pruned.tree) #remove other taxa
+plot(pruned.tree)
 
 
